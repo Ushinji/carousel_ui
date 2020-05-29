@@ -7,5 +7,10 @@
         "module": "commonjs",
         "target": "es6",
         "jsx": "react"
-    }
+    },
+    "plugins": [
+        {
+          "name": "typescript-styled-plugin"
+        }
+    ]
 }
