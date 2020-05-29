@@ -1,0 +1,45 @@
+import { useState, useCallback, useMemo } from 'react';
+
+const useCarousel = (initialPage: number, maxPage: number) => {
+  const [page, setPage] = useState(initialPage);
+  const onNextClick = useCallback(() => {
+    const value = page === maxPage ? 1 : page + 1;
+    setPage(value);
+  }, [maxPage, page]);
+
+  const onPrevClick = useCallback(() => {
+    const value = page === 1 ? maxPage : page - 1;
+    setPage(value);
+  }, [maxPage, page]);
+
+  const transform = useMemo(() => {
+    return `translate3d(-${680 * (page - 1)}px, 0px, 0px)`;
+  }, [page]);
+
+  const width = useMemo(() => {
+    return 680 * maxPage;
+  }, [maxPage]);
+
+  const onClickIndicator = useCallback(
+    (nextPage: number) => {
+      setPage(nextPage);
+    },
+    [setPage]
+  );
+
+  return {
+    prevButtonProps: {
+      onClick: onPrevClick,
+      disabled: page === 1,
+    },
+    nextButtonProps: {
+      onClick: onNextClick,
+      disabled: page === maxPage,
+    },
+    sliderStyle: { transform, width },
+    onClickIndicator,
+    page,
+  };
+};
+
+export default useCarousel;
