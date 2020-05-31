@@ -7,11 +7,11 @@ export const LContainer = styled.div`
   width: 100%;
 `;
 
-export const LView = styled.div`
+export const LView = styled.div<{ width: number}>`
   overflow: hidden;
   margin: 0;
   padding: 0;
-  width: 680px;
+  width: ${props => `${props.width}px`};
   display: flex;
   flex-direction: column;
 `;
@@ -32,7 +32,7 @@ export const LSlider = styled.div<SliderProps>`
 
 export const LItem = styled.div`
   position: relative;
-  width: 680px;
+  width: 100%;
   height: 100%;
 `;
 

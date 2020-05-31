@@ -1,7 +1,8 @@
 import { useState, useCallback, useMemo } from 'react';
 
-const useCarousel = (initialPage: number, maxPage: number) => {
+const useCarousel = (initialPage: number, maxPage: number, itemWidth: number) => {
   const [page, setPage] = useState(initialPage);
+
   const onNextClick = useCallback(() => {
     const value = page === maxPage ? 1 : page + 1;
     setPage(value);
@@ -13,11 +14,11 @@ const useCarousel = (initialPage: number, maxPage: number) => {
   }, [maxPage, page]);
 
   const transform = useMemo(() => {
-    return `translate3d(-${680 * (page - 1)}px, 0px, 0px)`;
+    return `translate3d(-${itemWidth * (page - 1)}px, 0px, 0px)`;
   }, [page]);
 
-  const width = useMemo(() => {
-    return 680 * maxPage;
+  const sliderWidth = useMemo(() => {
+    return itemWidth * maxPage;
   }, [maxPage]);
 
   const onClickIndicator = useCallback(
@@ -36,7 +37,7 @@ const useCarousel = (initialPage: number, maxPage: number) => {
       onClick: onNextClick,
       disabled: page === maxPage,
     },
-    sliderStyle: { transform, width },
+    sliderStyle: { transform, width: sliderWidth },
     onClickIndicator,
     page,
   };

@@ -28,7 +28,7 @@ const RootPage: React.FC = () => {
     <LContainer>
       <h1>Carousel Sample</h1>
       <LBody>
-        <Carousel>
+        <Carousel itemWidth={640}>
           <LPage>1</LPage>
           <LPage>2</LPage>
           <LPage>3</LPage>

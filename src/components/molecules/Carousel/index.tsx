@@ -13,27 +13,27 @@ import Control from './Control';
 
 type Props = {
   children: React.ReactNodeArray;
+  itemWidth?: number;
 };
 
-const Carousel: React.FC<Props> = ({ children }) => {
+const Carousel: React.FC<Props> = ({ children, itemWidth=680 }) => {
   const {
     nextButtonProps,
     prevButtonProps,
     sliderStyle,
     page,
     onClickIndicator,
-  } = useCarousel(1, children.length);
+  } = useCarousel(1, children.length, itemWidth);
 
   return (
     <LContainer>
       <Control direction="prev" {...prevButtonProps} />
-      <LView>
+      <LView width={itemWidth}>
         <LSlider {...sliderStyle}>
           {children.map((node, index) => {
             return <LItem key={`carousel-item-${index}`}>{node}</LItem>;
           })}
         </LSlider>
-
         <LIndicators>
           {children.map((_, index) => {
             return (
@@ -47,7 +47,6 @@ const Carousel: React.FC<Props> = ({ children }) => {
             );
           })}
         </LIndicators>
-
       </LView>
       <Control direction="next" {...nextButtonProps} />
     </LContainer>
