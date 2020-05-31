@@ -4,7 +4,8 @@
   "description": "Carousel UI sample.",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server --mode=development",
+    "build": "webpack --mode=production"
   },
   "keywords": [],
   "author": "Ushinji",
